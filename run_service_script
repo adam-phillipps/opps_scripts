@@ -8,6 +8,13 @@
 # Description:       Enable service provided by daemon. This is to run the actual ruby file and can do stuff like bundle install etc.
 #                     This script exists because it can be updated by the git pull run by the setup_script, which is run by upstart.
 ### END INIT INFO
+
+
+###################################################################
+# MAKE SURE THIS SCRIPT IS EXECUTABLE  chmod +x <path to this file>
+###################################################################
+
+
 #!/bin/sh
 #!/usr/bin/env ruby
 

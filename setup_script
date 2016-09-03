@@ -8,6 +8,13 @@
 # Description:       Enable service provided by daemon. this gets run by the upstart script and updates the repo etc.
 #                     This file is located at exp: /home/ubuntu/<right here>/<repo> or wherever upstart has it located.
 ### END INIT INFO
+
+
+###################################################################
+# MAKE SURE THIS SCRIPT IS EXECUTABLE  chmod +x <path to this file>
+###################################################################
+
+
 #!/bin/sh
 #!/usr/bin/env ruby
 set -x
