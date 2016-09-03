@@ -1,0 +1,7 @@
+description "This upstart script goes in /etc/init/<script title> and runs at boot"
+author "Adam Phillipps"
+start on runlevel [2345]
+script
+    cd /home/ubuntu
+    exec  bash -c '/home/ubuntu/<another bash script to update the repo etc> &> /home/ubuntu/<log name>'
+end script

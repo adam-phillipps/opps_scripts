@@ -1,0 +1,19 @@
+### BEGIN INIT INFO
+# Provides:          <the script name it calls>
+# Required-Start:    $remote_fs $syslog
+# Required-Stop:     $remote_fs $syslog
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: Start daemon at boot time
+# Description:       Enable service provided by daemon. This is to run the actual ruby file and can do stuff like bundle install etc.
+#                     This script exists because it can be updated by the git pull run by the setup_script, which is run by upstart.
+### END INIT INFO
+#!/bin/sh
+#!/usr/bin/env ruby
+
+cd /home/ubuntu/<repo>
+bundle install
+
+/home/ubuntu/.rbenv/shims/ruby <ruby file> &> <log file name>
+
+exit 0

@@ -1,0 +1,30 @@
+### BEGIN INIT INFO
+# Provides:          <script name>
+# Required-Start:    $remote_fs $syslog
+# Required-Stop:     $remote_fs $syslog
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: Start daemon at boot time
+# Description:       Enable service provided by daemon. this gets run by the upstart script and updates the repo etc.
+#                     This file is located at exp: /home/ubuntu/<right here>/<repo> or wherever upstart has it located.
+### END INIT INFO
+#!/bin/sh
+#!/usr/bin/env ruby
+set -x
+sudo chmod 777 /home/ubuntu/computeController.log
+log()
+{
+    read INPUT
+    logger -s -t $(basename $0) "DEBUG: $INPUT"
+}
+logger "Started something er other"
+/home/ubuntu/.rbenv/shims/ruby -v | (log)
+cd /home/ubuntu/<repo>
+git stash
+git checkout master
+git reset --hard origin/master
+git pull --rebase
+
+/home/ubuntu/.rbenv/shims/ruby <ruby file name> &> /home/ubuntu/<log name> | (log)
+logger "Completed Script"
+exit 0
