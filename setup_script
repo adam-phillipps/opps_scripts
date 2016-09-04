@@ -32,6 +32,18 @@ git checkout master
 git reset --hard origin/master
 git pull --rebase
 
+# After initializing and updating submodules, get the newest master
+git submodule update --init --recursive
+git pull --recurse-submodules
+foreach dir in $(git submodule summary | grep '*' | cut -d ' ' -f 2); do
+    pushd $dir
+        git stash
+        git checkout master
+        git reset --hard origin/master
+        git pull
+    popd
+done
+
 /home/ubuntu/.rbenv/shims/ruby <ruby file name> &> /home/ubuntu/<log name> | (log)
 logger "Completed Script"
 exit 0
